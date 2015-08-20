@@ -1,12 +1,7 @@
-var restify = require('restify');
-var request = require('request');
 var fs = require('fs');
+var request = require('request');
 
-var client = restify.createJsonClient({
-	url: 'http://localhost:8081'
-});
+var url = encodeURIComponent('http://7xj5yf.com1.z0.glb.clouddn.com/images/kivi.png');
 
-var testImage = encodeURIComponent('http://pic1a.nipic.com/2008-12-04/2008124215522671_2.jpg');
-
-
-request('http://localhost:8081/images/1234567/300/100/png/' + testImage).pipe(fs.createWriteStream('./dist/hello.png'));
+request('http://localhost:8081/images/id/300/100/png/' + url).pipe(fs.createWriteStream('./transformed.png'));
+// request('http://192.168.99.100:8081/images/id/300/100/png/' + url).pipe(fs.createWriteStream('./transformed.png'));
