@@ -13,10 +13,11 @@ server.use(restify.bodyParser());
 
 // TODO 这里应该没有必要使用id
 server.get('/images/:id/:width/:height/:type/:url', function(req, res ,next) {
-	console.log(req.params.url);
+	console.log('image_url:', req.params.url);
 	var wtireStream = gm(req.params.url).resize(req.params.width, req.params.height, '!').stream(req.params.type);
 	wtireStream.pipe(res);
 	wtireStream.on('end', function() { next(false); });
+	wtireStream.pipe(fs.createWriteStream('./transformed-server.png'));
 });
 
 server.listen(8081, function() {
