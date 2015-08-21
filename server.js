@@ -70,6 +70,19 @@ server.get('/images/crop/:width/:height/:x/:y/:url', function(req, res, next) {
 	});
 });
 
+server.get('/images/format/:type/:url', function(req, res, next) {
+	console.log('*********************************************************************************************');
+	console.log('request_url:', req.url);
+	console.log('operation: format image');
+	console.log('format:', req.type);
+	console.log('image_url:', req.params.url);
+	console.log('*********************************************************************************************');
+	var wtireStream = gm(req.params.url).stream(req.params.type);
+	wtireStream.pipe(res);
+	wtireStream.on('end', function() { next(false); });
+	wtireStream.pipe(fs.createWriteStream('./format-server.' + req.params.type));
+});
+
 
 server.listen(8081, function() {
   console.log('%s listening at %s', server.name, server.url);
