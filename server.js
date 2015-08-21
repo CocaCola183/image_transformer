@@ -28,7 +28,7 @@ server.get('/images/:id/:width/:height/:type/:url', function(req, res ,next) {
 	wtireStream.pipe(fs.createWriteStream('./transformed-server.png'));
 });
 
-server.get('/images/:width/:height/:url', function(req, res, next) {
+server.get('/images/resize/:width/:height/:url', function(req, res, next) {
 	console.log('*********************************************************************************************');
 	console.log('request_url:', req.url);
 	console.log('operation: resize image');
