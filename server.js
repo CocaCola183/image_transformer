@@ -36,7 +36,7 @@ server.get('/images/:width/:height/:url', function(req, res, next) {
 	console.log('image_height:', req.params.height);
 	console.log('image_url:', req.params.url);
 	console.log('*********************************************************************************************');
-	var wtireStream = gm(req.params.url).resize(req.params.width, req.params.height, '!').stream();
+	var wtireStream = gm(req.params.url).resize(req.params.width, req.params.height, '!').stream('png');
 	wtireStream.pipe(res);
 	wtireStream.on('end', function() { next(false); });
 	gm(req.params.url).format(function(err, format) {
