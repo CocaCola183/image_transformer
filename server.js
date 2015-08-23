@@ -12,7 +12,7 @@ server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
 // TODO 这里应该没有必要使用id
-server.get('/images/:id/:width/:height/:type/:url', function(req, res ,next) {
+server.get('/api/v1/images/:id/:width/:height/:type/:url', function(req, res ,next) {
 	console.log('*********************************************************************************************');
 	console.log('request_url:', req.url);
 	console.log('operation: get transformed image');
@@ -28,7 +28,7 @@ server.get('/images/:id/:width/:height/:type/:url', function(req, res ,next) {
 	wtireStream.pipe(fs.createWriteStream('./transformed-server.png'));
 });
 
-server.get('/images/resize/:width/:height/:url', function(req, res, next) {
+server.get('/api/v1/images/resize/:width/:height/:url', function(req, res, next) {
 	console.log('*********************************************************************************************');
 	console.log('request_url:', req.url);
 	console.log('operation: resize image');
@@ -48,7 +48,7 @@ server.get('/images/resize/:width/:height/:url', function(req, res, next) {
 	});
 });
 
-server.get('/images/crop/:width/:height/:x/:y/:url', function(req, res, next) {
+server.get('/api/v1/images/crop/:width/:height/:x/:y/:url', function(req, res, next) {
 	console.log('*********************************************************************************************');
 	console.log('request_url:', req.url);
 	console.log('operation: crop image');
@@ -70,7 +70,7 @@ server.get('/images/crop/:width/:height/:x/:y/:url', function(req, res, next) {
 	});
 });
 
-server.get('/images/format/:type/:url', function(req, res, next) {
+server.get('/api/v1/images/format/:type/:url', function(req, res, next) {
 	console.log('*********************************************************************************************');
 	console.log('request_url:', req.url);
 	console.log('operation: format image');
