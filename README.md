@@ -1,17 +1,15 @@
 # image_transformer
 
-start:  
+This is just a test for microservice.  
 
-```
-cd image_transformer
+Run `docker build -t image-transformer .` and then you will build a docker image width official node:latest and imagemagick:latest env.
 
-npm install
+I tried with docker 1.7, and there is no more test for other version.  
 
-node server.js
+Then run some code like this:  
 
-node client.js
-```
+`docker run -d -p 8081:8081 --name image-transformer -w /app -v "$(pwd)":/app -v  image-transformer npm start`  
 
-Then you got transformed.png.
+and you will get some image service from the server.js, if you want to get more about node with imagemagick, click [here](https://github.com/aheckmann/gm)  
 
-
+The server.js and test folder are just tmp files for a test of the docker image
